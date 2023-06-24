@@ -7,17 +7,16 @@
 <body>
   <div class="container">
     <h1>Vaccine Booking</h1>
+    <div class="remaining-slots">Remaining Slots Today: <span id="remainingSlots"></span></div>
     <div id="searchForm">
       <h2>Search Vaccination Centers</h2>
       <div class="location-selection">
         <label for="locationDropdown" class="label-location">Select Location:</label>
         <select id="locationDropdown">
           <option value="" disabled selected>Select Location</option>
-
-          <!-- Add more locations as needed -->
         </select>
       </div>
-      <button id="searchBtn">Search</button>
+      <button id="searchBtn" disabled>Search</button>
     </div>
     <div id="centersList" class="hide">
       <h2>Available Vaccination Centers</h2>
@@ -30,7 +29,7 @@
         <input type="number" id="age" placeholder="Age" required>
         <input type="hidden" id="selectedCenter">
         <input type="hidden" id="selectedDate">
-        <button type="submit" onclick="book_slot()">Book Slot</button>
+        <button type="submit">Book Slot</button>
       </form>
     </div>
     <div id="bookingStatus" class="hide">

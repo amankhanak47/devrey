@@ -1,5 +1,6 @@
 
 
+
 const summary = document.getElementById("summary");
 const centersList = document.getElementById("centersList");
 const addCenterForm = document.getElementById("addCenterForm");
@@ -74,8 +75,8 @@ function displayCenters() {
       <td>${center.slot}</td>
       <td>${center.date}</td>
       <td>
-        <button onclick="editCenter(${index})">Edit</button>
-        <button onclick="deleteCenter(${index})">Delete</button>
+        <button onclick="editCenter('${center.name}')">Edit</button>
+        <button onclick="deleteCenter('${center}')">Delete</button>
       </td>
     `;
     centersList.appendChild(row);
@@ -133,9 +134,8 @@ async function addOrUpdateCenter(event) {
 }
 
 // Edit a vaccination center
-function editCenter(index) {
-  const center = centersData[index];
-  currentCenterIndex = index; // Set the currentCenterIndex to the edited center index
+async function editCenter(center) {
+
 
   // Populate the form fields with the center details
   document.getElementById("centerName").value = center.name;
@@ -144,15 +144,30 @@ function editCenter(index) {
   document.getElementById("centerSlots").value = center.slots;
 
   // Change the form button text to 'Update Center'
+  
   document.getElementById("centerFormBtn").textContent = "Add";
 }
 
 // Delete a vaccination center
-function deleteCenter(index) {
-  centersData.splice(index, 1);
+async function deleteCenter(index) {
+  // centersData.splice(index, 1);
+  console.log("first")
+
+    const response = await fetch(`https://devray1.onrender.com/auth/deletecenter`, {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ "name": index })
+   
+  });
+  centersData = await response.json();
+  console.log(centersData)
+  // displayCenters();
 
   // Display the updated centers table and dashboard summary
-  displayCenters();
+  fetchcenters();
   displayDashboard();
 }
 
