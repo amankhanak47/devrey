@@ -30,7 +30,7 @@ let currentCenterIndex = -1;
 fetchcenters()
 let centersData=[];
 async function fetchcenters() {
-  const response = await fetch(`https://devray1.onrender.com/auth/getallcenter`, {
+  const response = await fetch(`http://localhost:5000/auth/getallcenter`, {
     method: "POST",
 
     headers: {
@@ -76,7 +76,7 @@ function displayCenters() {
       <td>${center.date}</td>
       <td>
         <button onclick="editCenter('${center.name}')">Edit</button>
-        <button onclick="deleteCenter('${center}')">Delete</button>
+        <button onclick="deleteCenter('${center.name}')">Delete</button>
       </td>
     `;
     centersList.appendChild(row);
@@ -103,7 +103,7 @@ async function addOrUpdateCenter(event) {
     date:date
   };
   // async function addcenters() {
-  const response = await fetch(`https://devray1.onrender.com/auth/addcenter`, {
+  const response = await fetch(`http://localhost:5000/auth/addcenter`, {
     method: "POST",
 
     headers: {
@@ -151,9 +151,9 @@ async function editCenter(center) {
 // Delete a vaccination center
 async function deleteCenter(index) {
   // centersData.splice(index, 1);
-  console.log("first")
+  console.log(index)
 
-    const response = await fetch(`https://devray1.onrender.com/auth/deletecenter`, {
+    const response = await fetch(`http://localhost:5000/auth/deletecenter`, {
     method: "POST",
 
     headers: {
@@ -168,7 +168,7 @@ async function deleteCenter(index) {
 
   // Display the updated centers table and dashboard summary
   fetchcenters();
-  displayDashboard();
+  // displayDashboard();
 }
 
 // Event listener for form submission

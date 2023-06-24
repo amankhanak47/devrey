@@ -15,7 +15,7 @@ let bookedSlots = 0;
 
 fetchCenters();
 async function fetchCenters() {
-  const response = await fetch(`https://devray1.onrender.com/auth/getallcenter`, {
+  const response = await fetch(`http://localhost:5000/auth/getallcenter`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -51,7 +51,7 @@ locationDropdown.addEventListener('change', () => {
 searchBtn.addEventListener('click', async() => {
   const selectedLocation = locationDropdown.value;
 
-  const response = await fetch(`https://devray1.onrender.com/auth/get_loc_center`, {
+  const response = await fetch(`http://localhost:5000/auth/get_loc_center`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -118,7 +118,7 @@ slotForm.addEventListener('submit', async(event) => {
     <button id="bookAnotherBtn">Yes</button>
     <button id="cancelBookingBtn">No</button>
   `;
-   const response = await fetch(`https://devray1.onrender.com/auth/bookslot`, {
+   const response = await fetch(`http://localhost:5000/auth/bookslot`, {
     method: "POST",
 
     headers: {
